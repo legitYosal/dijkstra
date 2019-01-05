@@ -1,0 +1,6 @@
+c:\users\steven\documents\visual studio 2017\Projects\Dijkstra\Dijkstra\obj\Debug\Dijkstra.csprojResolveAssemblyReference.cache
+c:\users\steven\documents\visual studio 2017\Projects\Dijkstra\Dijkstra\bin\Debug\Dijkstra.exe.config
+c:\users\steven\documents\visual studio 2017\Projects\Dijkstra\Dijkstra\bin\Debug\Dijkstra.exe
+c:\users\steven\documents\visual studio 2017\Projects\Dijkstra\Dijkstra\bin\Debug\Dijkstra.pdb
+c:\users\steven\documents\visual studio 2017\Projects\Dijkstra\Dijkstra\obj\Debug\Dijkstra.exe
+c:\users\steven\documents\visual studio 2017\Projects\Dijkstra\Dijkstra\obj\Debug\Dijkstra.pdb
