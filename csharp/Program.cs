@@ -39,7 +39,7 @@ namespace Dijkstra
             if (start.Tail == "")
                 start.Tail += start.Name;
 
-            for (int i = 0 ; i < start.Adjacents.Count; i++)   //  updating values of all the adjacent vertexes 
+            for (int i = 0 ; i < start.Adjacents.Count; i++)   //  updating values of all the adjacent vertexes
             {
                 if(start.Value + start.AdjacentsValues[i] < start.Adjacents[i].Value)  //  check to see if the value of the specific adjacent vertex can be updated
                 {
@@ -60,13 +60,14 @@ namespace Dijkstra
                     }
                 }
             }
-            
+
             Vertex next = Vertex.All.Find(n => n.Value == min && n.State);
- 
+
             if(start.Name != final.Name)
                 Dijkstra2(next, final);
             else
-                Console.WriteLine(start.Tail);
+                Console.WriteLine("shortest path: " + start.Tail);
+                Console.WriteLine("shortest weight: " + start.Value);
         }
     }
 
