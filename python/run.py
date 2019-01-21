@@ -8,14 +8,15 @@ if __name__=='__main__':
         e = Node('e')
         f = Node('f')
 
-        a.AddEdge(b ,10, f, 1)
-        b.AddEdge(c,2, d, 3)
-        c.AddEdge(e,6)
-        d.AddEdge(e,1)
-        e.AddEdge(f,1)
+        a.AddEdge(b, 5, c, 1, d, 6)
+        b.AddEdge(a, 5, c, 3, e, 6)
+        c.AddEdge(a, 1, d, 4, b, 3, e, 8)
+        d.AddEdge(a, 6, c, 4, e, 1, f, 2)
+        e.AddEdge(b, 6, c, 8, d, 1, f, 7)
+        f.AddEdge(d, 2, e, 7)
 
 
-        dijkstra(a, '')
+        dijkstra(a)
 
         for node in Node.all:
             node.__str__()

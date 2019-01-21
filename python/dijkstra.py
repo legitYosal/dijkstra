@@ -10,6 +10,8 @@ class Node:
             self.Tail = ''
             self.Edge = []
             self.EdgeValue = []
+            if (not value):
+                self.Tail = name;
         def AddEdge(self, node, value, *args):
             self.Edge.append(node)
             self.EdgeValue.append(value)
@@ -24,24 +26,19 @@ class Node:
             print('name of node: ', self.Name, ', weight of shortest path: ', self.Value, ', path name: ', self.Tail)
 
 
-def dijkstra(currentNode, tailStr):
+def dijkstra(currentNode):
         currentNode.State = False
-        currentNode.Tail = tailStr + currentNode.Name
         for i in range(0, len(currentNode.Edge)):
             if currentNode.Edge[i].State:
-                currentNode.Edge[i].Value = min(currentNode.Edge[i].Value, currentNode.Value + currentNode.EdgeValue[i])
+                if (currentNode.Value + currentNode.EdgeValue[i]) <= currentNode.Edge[i].Value:
+                    currentNode.Edge[i].Tail = currentNode.Tail + currentNode.Edge[i].Name
+                    currentNode.Edge[i].Value = (currentNode.Value + currentNode.EdgeValue[i])
+
         Min = Max
         nextNode = None
         for node in Node.all:
-            if node.State and node.Value < Min:
+            if node.State and node.Value <= Min:
                 Min = node.Value
                 nextNode = node
         if not nextNode == None:
-            Min = Max
-            tailNode = None
-            for node in Node.all:
-                if not node.State and nextNode in node.Edge and node.Value < Min:
-                    Min = node.Value
-                    tailNode = node
-
-            dijkstra(nextNode, tailNode.Tail)
+            dijkstra(nextNode)

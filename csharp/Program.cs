@@ -22,6 +22,9 @@ namespace Dijkstra
             Value = value;
             All.Add(this);
             Name = text;
+
+            if (value == 0)
+                Tail += Name;
         }
         public void AddAdjacent(Vertex adj , int val)
         {
@@ -36,12 +39,9 @@ namespace Dijkstra
         {
             start.State = false;
 
-            if (start.Tail == "")
-                start.Tail += start.Name;
-
-            for (int i = 0 ; i < start.Adjacents.Count; i++)   //  updating values of all the adjacent vertexes
+            for (int i = 0 ; i < start.Adjacents.Count; i++)   //  updating values of all the adjacent vertexes 
             {
-                if(start.Value + start.AdjacentsValues[i] < start.Adjacents[i].Value)  //  check to see if the value of the specific adjacent vertex can be updated
+                if((start.Value + start.AdjacentsValues[i] < start.Adjacents[i].Value) && start.Adjacents[i].State)  //  check to see if the value of the specific adjacent vertex can be updated
                 {
                     start.Adjacents[i].Value = start.Value + start.AdjacentsValues[i];
                     start.Adjacents[i].Tail = start.Tail + start.Adjacents[i].Name;
@@ -60,14 +60,13 @@ namespace Dijkstra
                     }
                 }
             }
-
+            
             Vertex next = Vertex.All.Find(n => n.Value == min && n.State);
-
+ 
             if(start.Name != final.Name)
                 Dijkstra2(next, final);
             else
-                Console.WriteLine("shortest path: " + start.Tail);
-                Console.WriteLine("shortest weight: " + start.Value);
+                Console.WriteLine("Shortest Path : " + start.Tail + "\n" + "Shortest Weight : " + start.Value);
         }
     }
 
@@ -82,13 +81,31 @@ namespace Dijkstra
             Vertex e = new Vertex("e");
             Vertex f = new Vertex("f");
 
-            a.AddAdjacent(b, 10);
-            a.AddAdjacent(e, 2);
-            e.AddAdjacent(f, 4);
-            b.AddAdjacent(d, 3);
+            a.AddAdjacent(b, 5);
+            a.AddAdjacent(c, 1);
+            a.AddAdjacent(d, 6);
+
+            b.AddAdjacent(a, 5);
             b.AddAdjacent(c, 3);
-            d.AddAdjacent(f, 0);
-            c.AddAdjacent(f, 5);
+            b.AddAdjacent(e, 6);
+
+            c.AddAdjacent(a, 1);
+            c.AddAdjacent(d, 4);
+            c.AddAdjacent(b, 3);
+            c.AddAdjacent(e, 8);
+
+            d.AddAdjacent(a, 6);
+            d.AddAdjacent(c, 4);
+            d.AddAdjacent(e, 1);
+            d.AddAdjacent(f, 2);
+
+            e.AddAdjacent(b, 6);
+            e.AddAdjacent(c, 8);
+            e.AddAdjacent(d, 1);
+            e.AddAdjacent(f, 7);
+
+            f.AddAdjacent(d, 2);
+            f.AddAdjacent(e, 7);
 
             Test test = new Test();
             test.Dijkstra2(a, f);
